@@ -9,6 +9,13 @@
     text-align: center;
 }
 
+a {
+ color: #3C33FF;
+ text-decoration: none;}
+ a:hover, a.on {
+ color: #cc3333;
+ background-color: #ffffff;}
+
  ul {
  max-width: 800px;
  padding: 15px;
