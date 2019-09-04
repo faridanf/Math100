@@ -21,13 +21,7 @@
  display: inline;
  margin: 0px 3px;}
 
-a {
- color: #000000;
- text-decoration: none;
- padding: 6px 18px 5px 18px;}
- a:hover, a.on {
- color: #cc3333;
- background-color: #ffffff;}
+
 
 p {
  text-align: left;
@@ -48,4 +42,10 @@ td,th{
     font-weight: normal;
 }
 
-
+tab {
+ max-width: 650px;
+ min-width: 300px;
+ margin: 5px auto 5px auto;
+ padding: 10px;
+ border: 2px double #000;
+ } tr:nth-child(even){background-color: #f2f2f2}
