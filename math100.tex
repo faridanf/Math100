@@ -1,0 +1,1235 @@
+\message{ !name(Math4140notes.tex)}
+\documentclass[12pt,a4paper]{book}
+
+% PAGELAYOUT
+\headheight=8pt    \topmargin=0pt
+\textheight=624pt \textwidth=432pt
+\oddsidemargin=18pt \evensidemargin=18pt
+
+% PACKAGES
+\usepackage{amsthm}
+ \usepackage{amsmath}
+ \usepackage[margin=1in]{geometry}
+ \usepackage{amsfonts}
+ \usepackage{graphicx}
+ \usepackage{mdframed}
+ \usepackage{dirtytalk}
+ \usepackage{blindtext}
+ \usepackage{tcolorbox}
+ \usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{fillbetween}
+
+% THEOREMS AND STRUCTURES
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{Example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\numberwithin{equation}{section}
+\newtheorem*{definition}{Definition}
+\newtheorem*{solution}{{\bf Solution}}
+\newtheorem*{remark}{Remark}
+
+\definecolor{moonstoneblue}{rgb}{0.45, 0.66, 0.76}
+
+\begin{document}
+
+\message{ !name(Math100.tex) !offset(-3) }
+
+
+%% TITLE, AUTHOR'S NAME AND ADDRESS
+ \title{MATH100: Differential Calculus with Application to Physical Sciences and Engineering}
+ \author{University of British Columbia\\ \\Farid Aliniaeifard}
+
+
+\maketitle
+
+% TABLE OF CONTENTS
+\tableofcontents
+
+
+
+\chapter{Limits}
+What does this mean  $$\underset{x\rightarrow a}{\rm lim}f(x)=L?$$
+
+The "limit" appears when we want to
+\begin{itemize}
+	\item find the tangent to a curve; or 
+	\item find the velocity of an object.
+\end{itemize} 
+\section{  Tangent line}
+
+
+
+
+%So what is a tangent line to a curve? We don't give a formal definition of the tangent to a curve, however through some examples we clarify this definition. 
+%\newpage
+
+$$
+	\includegraphics[width=1\linewidth]{tangent}
+$$
+$$
+\includegraphics[width=1\linewidth]{tangent2}
+$$
+The {\bf tangent line to a curve $y=f(x)$ at a point $P$} (if exists) is a line $L$ that there is a neighborhood for $P$ such that in that  neighborhood the line $L$ touches (does not cross) the curve $y=f(x)$ only at $P$ (and not other points in that neighborhood).
+
+
+\subsection*{The equation of a line}
+\begin{itemize}
+\item[--] The formula for a line that passes though $(x_1,y_1)$ with slope $m$ is 
+$$ y=y_1+m(x-x_1).$$
+\item[--] Given two points $(x_1,y_1)$ and $(x_2,y_2)$ on a line, then the slope of the line is $$m=\frac{y_2-y_1}{x_2-x_1},$$
+and the formula for the line then is 
+$$ y=y_1+m(x-x_1).$$
+\end{itemize}
+	\begin{Example} 
+Find the equation of the line with slope $-3$ that passes through $(1,2)$. 
+\begin{solution}
+	The equation of the line is $$y=2+(-3)(x-1), \text{~so~}y=5-3x.$$	
+\end{solution}		
+		\end{Example} 
+\begin{Example}
+	Find the equation of the line that passes through $(1,2)$ and $(2,-1)$.
+\end{Example}
+\begin{solution}
+	First we find the slope which is 
+	$$\frac{-1-2}{2-1}=-3.$$ Then the equation of the line is 
+$$y=2+(-3)(x-1), \text{~so~}y=5-3x.$$	
+\end{solution}
+
+
+
+
+\noindent {\bf The equation of a tangent line:} Given a curve $y=f(x)$ and a point $P$ on the curve, how to find the slope of the tangent to a curve at $P$:  let do this through an example.
+
+\begin{Example}
+	Find the tangent line to the curve $y=x^2$ that passes through $P=(1,1)$.
+\end{Example}
+$$
+\includegraphics[width=1\linewidth]{yx2}
+$$
+$$
+\includegraphics[width=1\linewidth]{yx22}
+$$
+
+%$$
+%	\includegraphics[width=1\linewidth]{yx2}
+%$$
+So we want to find the slope the line that passes through the points $(x_1,y_1)=(1,1)$ and $(x_2,y_2)=(1+h,(1+h)^2)$. The slope then is 
+$$
+m=\frac{y_2-y_1}{x_2-x_1}=\frac{ (1+h)^2-1^2 }{(1+h)-1}=\frac{1+2h+h^2-1}{h}=\frac{h(h+2)}{h}=2+h
+$$
+$$
+\begin{array}{|c|c|}
+\hline\\
+h & m=\frac{ (1+h)^2-1^2 }{(1+h)-1}\\
+\hline\\
+0.1 & 2.1\\
+0.01 & 2.01\\
+0.001 & 2.001\\
+\hline
+\end{array}
+$$
+When $h$ gets smaller and smaller, the slope will be closer and closer to the slope of the tangent line to $y=x^2$ at $(1,1)$, which the slope will be closer and closer to $2$, we can write this more mathematically as 
+$$ \underset{h\rightarrow 0}{\rm lim} \frac{(1+h)^2-1}{(1+h)-1}=2$$
+{\bf Read:}  {\it the limit of $\frac{(1+h)^2-1}{(1+h)-1}$ as $h$ approaches $0$ is $2$}.
+\\
+Tangent line is
+$$y=1+2(x-1)=2x-1.$$
+
+\section{Velocity}
+
+\noindent\begin{minipage}{0.5\textwidth} 
+	\begin{itemize}
+		\item[--] Let $t$ be elapsed time measured in second
+		\item[--] $S(t)$ be the distance the ball has fallen in meters
+		\item[--] What is $S(0)$? $S(0)=0$.
+		\item[--] ({\bf Galileo}) $S(t)=4.9t^2$.
+	\end{itemize}
+
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}\raggedleft
+$$	\includegraphics[width=1\linewidth]{fall.jpg} $$
+\end{minipage} 
+\\
+\\
+\noindent {\bf Question:} How fast the ball is fallen after $1$ second, that is,  find $v(1)$, the velocity at $t=1$ ?
+$$
+\text{average velocity}=\frac{\text{difference in position}}{\text{difference in time}}=\frac{S(t_2)-S(t_1)}{t_2-t_1}.
+$$
+To answer the question we should find the average velocity of the falling ball between $(1+h)$ and $1$. So,
+$$
+\text{average velocity when $(t_2=1+h)$ and $(t_1=1)$}$$
+$$=\frac{S(1+h)-S(1)}{h}=\frac{4.9(1+h)^2-4.9}{h}=4.9(2+h).
+$$
+$$
+\includegraphics[width=1\linewidth]{velocity.jpg}
+$$
+$$
+\begin{array}{|c|c|}
+\hline\\
+\text{time window} & \text{average velocity}\\
+\hline\\
+1\leq t\leq 1.1 & 10.29\\
+1\leq t\leq 1.01 & 9.84\\
+1\leq t\leq 1.01  & 9.8049\\
+1\leq t\leq 1.001  & 9.80049\\
+\hline
+\end{array}
+$$
+So we can write 
+$$v(1)= \underset{h\rightarrow 0}{\rm lim} \frac{S(1+h)-S(1)}{h}=9.8.$$
+	More generally:
+ \begin{mdframed}
+We define the instantaneous velocity at time $t=a$ to be the limit 
+	$$v(a)= \underset{h\rightarrow 0}{\rm lim} \frac{S(a+h)-S(a)}{h}$$
+ \end{mdframed}
+
+\newpage 
+\section{The limit of a function}
+
+To arrive at the definition of limit, we start with a very simple example.
+\begin{Example}
+	Consider the following function
+	$$
+	f(x)=\begin{cases}
+	2x & x<3\\
+	9 & x=3\\
+	2x & x>3
+	\end{cases}
+	$$
+	$$
+	\includegraphics[width=1\linewidth]{lim1}
+	$$
+	If we plug in some numbers very close to $3$ (but not exactly 3) into the function we see
+		$$
+	\includegraphics[width=.6\linewidth]{lim2}
+	$$
+	So as $x$ moves closer and closer to $3$, without being exactly $3$, we see that the function moves closer and closer to $6$. We can then write this as 
+	$$\underset{x\rightarrow 3}{\rm lim}f(x)=6.$$ \end{Example}
+	\begin{mdframed}
+	\begin{definition}
+		{\bf (Informal definition of limit)} We write 
+		$$\underset{x\rightarrow a}{\rm lim}f(x)=L.$$
+		if the value of the function $f(x)$ is sure to be arbitrary close to $L$ whenever the value of $x$ is close enough to $a$, without being exactly $a$.
+	\end{definition}
+	\end{mdframed}
+
+\begin{Example}
+	Let $f(x)=\frac{x-2}{x^2+x-6}$ and find its limit as $x\rightarrow 2$.  
+\end{Example}
+\begin{solution}
+	We want to find
+		$$\underset{x\rightarrow 2}{\rm lim}\frac{x-2}{x^2+x-6}.$$
+		{\bf Important point:} if we we compute $f(2)$, then we have $\frac{0}{0}$ which is undefined.
+		
+		Again we plug in numbers close to $2$ and we have 
+	$$
+\includegraphics[width=.7\linewidth]{lim3}
+$$
+		So
+		$$\underset{x\rightarrow 2}{\rm lim}\frac{x-2}{x^2+x-6}=2.$$
+		
+\end{solution}
+\begin{Example} Consider the following function $f (x) = sin(\pi/x)$. Find the limit as  $x\rightarrow 0$ of $f(x)$.
+\end{Example}
+
+\begin{solution}  When $x$ is getting closer and closer to $0$, it
+oscillates faster and faster. Since the function does not approach
+a single number as we bring $x$ closer and closer to zero, the limit does not exist. Thus, 
+$$\underset{x\rightarrow 0}{\rm lim}sin(\pi/x)=DNE$$
+		$$
+	\includegraphics[width=1\linewidth]{lim4}
+	$$
+\end{solution}
+
+\begin{Example}
+	Consider the function 
+	$$f(x)=
+	\begin{cases}
+	x & x<2\\
+	-1 & x=2\\
+	x+3 & x>2
+	\end{cases}
+	$$
+	Find $$\underset{x\rightarrow 2}{\rm lim}~f(x).$$
+\end{Example}
+
+\begin{solution}
+		$$
+	\includegraphics[width=1\linewidth]{lim8}
+	$$
+	Let again plug in some numbers close to $2$ (but not exactly $2$)
+		$$
+	\includegraphics[width=.7\linewidth]{lim7}
+	$$
+	Now when we approach from below (or left), we seem to be getting closer to $2$ {\color{red}{ $(\underset{x\rightarrow 2^{-}}{\rm lim}f(x)=2)$, }} but when we approach from above (or right) we seem to be getting closer to $5$ {\color{red}{ $(\underset{x\rightarrow 2^{+}}{\rm lim}f(x)=5)$ }}. Since we are not approaching the same number the limit does not exists. 
+	$$\underset{x\rightarrow 2}{\rm lim}f(x)=DNE$$
+	
+\end{solution}
+
+\begin{mdframed}
+\begin{definition}({\bf Informal definition of one-sided limits})
+	We write 
+	$$
+	\underset{x\rightarrow a^-}{\rm lim}f(x)=K
+	$$ when the value of $f(x)$ gets closer and closer to $K$ when $x<a$ and $x$ moves closer and closer to $a$. Since the $x$-values are always less than $a$, we say that $x$ approaches $a$ from below (or left). This is also often called the left-hand limit since the $x$-values lie to the left of $a$ on a sketch of the graph.
+	
+	We similarly write 
+	$$\underset{x\rightarrow a^{+}}{\rm lim}f(x)=L$$ when the values of $f(x)$ gets closer and closer to $L$ when $x>a$ and $x$ moves closer and closer to $a$. For similar reason we say that $x$ approaches $a$ from above, and sometimes to this as the the right-hand limit. 
+\end{definition}
+\end{mdframed}
+
+\begin{mdframed}
+\begin{theorem}
+	$$\underset{x\rightarrow a}{\rm lim}f(x)=L\quad \text{if and only if} \quad \underset{x\rightarrow a^-}{\rm lim}f(x)=L \quad \text{and} \quad \underset{x\rightarrow a^+}{\rm lim}f(x)=L$$
+\end{theorem}
+\end{mdframed}
+
+\begin{itemize}
+	\item If the limit of $f(x)$ as $x$ approaches $a$ exists and is equal to $L$, then both the left-hand
+and right-hand limits exist and are equal to $L$. 
+\item 
+ If the left-hand and right-hand limits as $x$ 
+ approaches a exist and are equal, then the
+limit as $x$ approaches a exists and is equal to the one-sided limits.
+\end{itemize}
+Contrapositive of the above argument says
+\begin{itemize}
+\item If either of the left-hand and right-hand limits as $x$ approaches a fail to exist, or if
+they both exist but are different, then the limit as $x$ approaches a does not exist.
+AND,
+\item If the limit as $x$ approaches a does not exist, then the left-hand and right-hand limits
+are either different or at least one of them does not exist.
+\end{itemize}
+
+\begin{Example} Consider the graph of the function $f(x)$.
+		$$
+	\includegraphics[width=.5\linewidth]{lim9}
+	$$
+	Then 
+	$$
+	\underset{x\rightarrow 1^-}{\rm lim}f(x)=2  \quad \quad 
+	\underset{x\rightarrow 1^+}{\rm lim}f(x)= 2 \quad \quad  	\underset{x\rightarrow 1}{\rm lim}f(x)=2
+	$$
+\end{Example}
+\begin{Example} Consider the graph of the function $g(x)$.
+	$$
+	\includegraphics[width=.5\linewidth]{lim10}
+	$$
+	Then 
+	$$
+	\underset{t\rightarrow 1^-}{\rm lim}g(t)=2  \quad \quad 
+	\underset{t\rightarrow 1^+}{\rm lim}g(t)= -2 \quad \quad  	\underset{t\rightarrow 1}{\rm lim}g(t)=DNE
+	$$
+\end{Example}
+In the following example even though the limit doesn't exists when $x$ approaches $a$, we can say more. 
+\begin{Example}
+	Consider the graph for the function $f(x)$.
+		$$
+	\includegraphics[width=.4\linewidth]{lim11}
+	$$
+	$$
+%	\underset{x\rightarrow a^-}{\rm lim}f(x)=+\infty  \quad \quad 
+%	\underset{x\rightarrow a^+}{\rm lim}f(x)= +\infty \quad \quad
+	  	\underset{x\rightarrow a}{\rm lim}f(x)=+\infty
+	$$
+\end{Example}
+
+		
+	\begin{Example}
+		Consider the graph for the function $g(x)$.
+		$$
+		\includegraphics[width=.4\linewidth]{lim12}
+		$$
+		$$
+	%	\underset{x\rightarrow a^-}{\rm lim}g(x)=-\infty  \quad \quad 
+	%	\underset{x\rightarrow a^+}{\rm lim}g(x)= -\infty \quad \quad  
+			\underset{x\rightarrow a}{\rm lim}g(x)=-\infty
+		$$
+	\end{Example}
+
+\begin{mdframed}
+	\begin{definition}
+		We write 
+		$$\underset{x\rightarrow a}{\rm lim}f(x)=+\infty$$
+		when the value of the function $f(x)$ becomes arbitrarily large and positive as $x$ gets closer and closer to $a$, without being exactly $a$.
+		\\
+		Similarly, we write 
+		$$\underset{x\rightarrow a}{\rm lim}f(x)=-\infty$$
+		when the value of the function $f(x)$ becomes arbitrarily large and negative as $x$ gets closer and closer to $a$, without being exactly $a$.
+	\end{definition}
+\end{mdframed}
+\begin{Example}
+	$$\underset{x\rightarrow 0}{\rm lim}\frac{1}{x^2}=+\infty \quad  \quad \underset{x\rightarrow 0}{\rm lim}-\frac{1}{x^2}=-\infty$$
+\end{Example}
+
+\noindent {\bf Important Point:} Do not think of \say{$+\infty$} and \say{$-\infty$} in these statements as numbers. When we write $\underset{x\rightarrow a}{\rm lim}f(x)=+\infty$, it says \say{the function $f(x)$ becomes arbitrary large as $x$ approaches $a$}.
+	
+	\begin{Example}
+	Consider the graph for the function $h(x)$.
+	$$
+	\includegraphics[width=.4\linewidth]{lim13}
+	$$
+	$$
+	\underset{x\rightarrow a^-}{\rm lim}h(x)=+\infty  \quad \quad 
+	\underset{x\rightarrow a^+}{\rm lim}h(x)= 3 \quad \quad  	\underset{x\rightarrow a}{\rm lim}h(x)=DNE
+	$$
+\end{Example}	
+	\begin{Example}
+	Consider the graph for the function $s(x)$.
+	$$
+	\includegraphics[width=.4\linewidth]{lim14}
+	$$
+	$$
+	\underset{x\rightarrow a^-}{\rm lim}s(x)=3  \quad \quad 
+	\underset{x\rightarrow a^+}{\rm lim}s(x)=-\infty \quad \quad  	\underset{x\rightarrow a}{\rm lim}s(x)=DNE
+	$$
+\end{Example}
+
+\begin{mdframed}
+\begin{definition}
+	We write $$\underset{x\rightarrow a^+}{\rm lim}f(x)=+\infty$$ when the value of the function $f(x)$ becomes arbitrarily large and positive as $x$ gets closer and closer to $a$ from above (equivalently, from right), without being exactly $a$.\\
+	Similarly, we write 
+	$$\underset{x\rightarrow a^+}{\rm lim}f(x)=-\infty$$ when the values of the function $f(x)$ becomes arbitrarily large and negative as $x$ gets closer and closer to $a$ from above (equivalently, from right), without being exactly $a$. 
+	\\
+	The notation 
+	$$ \underset{x\rightarrow a^-}{\rm lim}f(x)=+\infty \quad \text{and} \quad\underset{x\rightarrow a^-}{\rm lim}f(x)=-\infty $$ has a similar meaning except that limits are approached form below (from left).
+\end{definition}
+\end{mdframed}
+
+
+
+\begin{Example}
+	Consider the function $$g(x)=\frac{1}{sin(x)}.$$ Find the one-side limits of this function as $x\rightarrow \pi$.
+\end{Example}
+	$$
+\includegraphics[width=1\linewidth]{lim15}
+$$
+
+	$$
+\includegraphics[width=1\linewidth]{lim17}
+$$
+
+
+
+\newpage
+\section{Calculating Limits with Limit Laws} 
+
+\begin{mdframed}
+	\begin{theorem}
+	Let $a,c\in \mathbb{R}$. The following two limits hold 
+	$$  	\underset{x\rightarrow a}{\rm lim}c=c \quad \quad 	\underset{x\rightarrow a}{\rm lim}x=a $$
+	\end{theorem}
+	
+\end{mdframed}
+
+
+
+
+\begin{tcolorbox}[width=\textwidth,colback={blue!10},title={},colbacktitle=yellow,coltitle=blue]    
+\begin{theorem}(Arithmetic of Limits)
+	Let $a,c\in \mathbb{R}$, let $f(x)$ and $g(x)$ be defined for all $x$'s that lie in some interval about $a$ (but $f$ and $g$ need not to be defined exactly at $a$).
+	$$\underset{x\rightarrow a}{\rm lim}f(x)=F \quad \quad \underset{x\rightarrow a}{\rm lim}g(x)=G$$ 
+	exists with $F,G\in \mathbb{R}$. Then the following limits hold
+	\begin{itemize}
+		\item 	$ \underset{x\rightarrow a}{\rm lim}(f(x)+g(x))=F+G$--limit of the sum is the sum of the limits.
+		\item $ \underset{x\rightarrow a}{\rm lim}(f(x)-g(x))=F-G$--limit of the difference is the difference of the limits.
+		\item $\underset{x\rightarrow a}{\rm lim}cf(x)=cF$.
+		\item $ \underset{x\rightarrow a}{\rm lim}(f(x).g(x))=F.G$--limit of the product is the product of the limits.
+		\item If $G\neq 0$ then $\underset{x\rightarrow a}{\rm lim}\frac{f(x)}{g(x)}=\frac{F}{G}$.
+	\end{itemize}
+\end{theorem}
+\end{tcolorbox} 
+
+\begin{Example}
+	Given 
+	$$\underset{x\rightarrow 1}{\rm lim}f(x)=3\quad \text{and} \quad \underset{x\rightarrow 1}{\rm lim}g(x)=2 $$
+	We have 
+	 $$\underset{x\rightarrow 1}{\rm lim}3f(x)=3\times \lim_{x\to 1}f(x)=3\times 3=9.$$
+		$$\underset{x\rightarrow 1}{\rm lim}3f(x)-g(x)=3\times \lim_{x\to 1}f(x)-\lim_{x\to 1}g(x)=3\times 3- 2=7.$$
+		 $$\underset{x\rightarrow 1}{\rm lim}f(x)g(x)=\lim_{x\to 1}f(x).\lim_{x\to 1}g(x)=3\times 2=6.$$
+		 $$\underset{x\rightarrow 1}{\rm lim} \frac{f(x)}{f(x)-g(x)}=\frac{\lim_{x\to 1}f(x)}{\lim_{x\to 1}f(x)-\lim_{x\to 1}g(x)}=\frac{3}{3-2}=3.$$
+\end{Example}
+\begin{Example} 
+	
+		$$\lim_{x\to 3}4x^2-1=4\times \lim_{x\to 3}x^2-\lim_{x\to 3}1=35.$$
+		 $$\lim_{x\to 2}\frac{x}{x-1}=\frac{\lim_{x\to 2}x}{\lim_{x\to 2}x-\lim_{x\to 1}1}=\frac{2}{2-1}=2.$$
+	
+\end{Example}
+Consider that we apply the theorem  Arithmetic of Limits to compute the limit of a ratio if the limit of denominator is not zero. 
+{\bf What will happen if the limit of denominator is zero:}
+\begin{itemize}
+	\item[--] the limit does not exist, eg. 
+	$$  \lim_{x\to 0} \frac{x}{x^2}=\lim_{x\to 0} \frac{1}{x}=DNE$$
+	\item[--] the limit is $\pm \infty$, eg. 
+	$$\lim_{x\to 0} \frac{x^2}{x^4}=\lim_{x\to 0} \frac{1}{x^2}=+\infty \quad \quad \text{or} \quad \quad \lim_{x\to 0} \frac{-x^2}{x^4}=\lim_{x\to 0} \frac{-1}{x^2}=-\infty.$$
+	\item[--] the limit is $0$, eg. $$\lim_{x\to 0} \frac{x^2}{x}=\lim_{x\to 0} x=0.$$
+	\item[--] the limit exists and it nonzero, eg. $$\lim_{x\to 0} \frac{x}{x}=1.$$
+\end{itemize}
+
+\begin{tcolorbox}[width=\textwidth,colback={blue!10},title={},colbacktitle=yellow,coltitle=blue]  
+\begin{theorem}
+	Let $n$ be a positive integer, let $a\in R$ and let $f$ be a function so that
+	$$\lim_{x\to a}f(x)=F$$ for some real number $F$. Then the following holds
+	$$ \lim_{x\to a}(f(x))^n=\left( \lim_{x\to a} f(x) \right)^n=F^n$$ so that the limit of a power is the power of the limit. Similarly, if 
+	\begin{itemize}
+		\item $n$ is an even number and $F>0$, or 
+		\item $n$ is an odd number and $F$ is any real number 
+	\end{itemize}
+then 
+$$ \lim_{x\to a}(f(x))^{1/n}=\left( \lim_{x\to a}f(x) \right)^{1/n}=F^{1/n}.$$
+	\end{theorem}
+\end{tcolorbox}
+
+\begin{Example}
+	$$\lim_{x\to 4}x^{1/2}=4^{1/2}=2.$$
+	$$\lim_{x\to 4}(-x)^{1/2}=-4^{1/2}=\text{not a real number}.$$
+	$$ \lim_{x\to 2} (4x^2-3)^{1/3}= (4(2)^2-3)^{1/3}=13^{1/3}$$
+\end{Example}
+
+\begin{Example} Compute the following limits.
+\begin{enumerate}	
+	\item $\lim_{x\to 2} \frac{x^3-x^2}{x-1}$
+\item $\lim_{x\to 1} \frac{x^3-x^2}{x-1}$
+\end{enumerate}
+\end{Example}
+
+\begin{solution}
+	1. $\lim_{x\to 2} \frac{x^3-x^2}{x-1}=4.$\\
+	2. Consider that $\lim_{x\to 1} {x^3-x^2}=0$ and $\lim_{x\to 1} {x-1}=0$. However, 
+	$$ \frac{x^3-x^2}{x-1}=\frac{x^2(x-1)}{x-1},$$ thus
+	$$ \frac{x^3-x^2}{x-1}=\begin{cases}
+	x^2 & x\neq 1\\
+	\text{undefined} & x=1.
+	\end{cases}
+	$$
+		$$
+	\includegraphics[width=1\linewidth]{lim18}
+	$$
+	And so
+	$$ \lim_{x\to 1} \frac{x^3-x^2}{x-1}=\lim_{x\to 1} {x^2}=1. $$
+\end{solution}
+The reasoning in the above example can be made more general:
+\begin{theorem}
+	If $f(x)=g(x)$ except when $x=a$ then $$\lim_{x\to a} f(x)=\lim_{x\to a} g(x)$$ provided the limit of $g$ exists. 
+\end{theorem}
+We mostly use the above theorem when we end up with $\frac{0}{0}$.
+
+\begin{Example}
+	Compute 
+	$$\lim_{h\to 0} \frac{(1+h)^2-1}{h}.$$
+\end{Example}
+\begin{solution}
+	Note that 
+	$$\frac{(1+h)^2-1}{h}=\frac{1+2h+h^2-1}{h}=\frac{h(2+h)}{h}.$$ Thus,
+	$$\frac{(1+h)^2-1}{h}=\begin{cases}
+	2+h & h\neq 0\\
+	\text{undefined} & h=0.
+	\end{cases}$$
+	And so $$\lim_{h\to 0}\frac{(1+h)^2-1}{h}=\lim_{h\to 0}2+h=2.$$
+\end{solution}
+We now present a slightly harder example.
+\begin{Example}
+	Compute the limit 
+	$$\lim_{x\to 0}\frac{x}{\sqrt{1+x}-1}.$$
+\end{Example}
+
+\begin{solution}
+	Both the limits of the numerator and denominator as $x \to 0$ are $0$, so we cannot use  the Theorem  Arithmetic of limits. We now can simply multiply the numerator and denominator by the conjugation of $\sqrt{1+x}-1$, that is, $\sqrt{1+x}+1$. We have
+		$$
+	\includegraphics[width=1\linewidth]{lim19}
+	$$
+	
+\end{solution}
+Before we move to the next section and study the limits at infinity, we have one more theorem to state. 
+\begin{Example}
+	Compute 
+	$$\lim_{x\to 0} x^2\sin(\frac{\pi}{x})$$
+\end{Example}
+	$$
+\includegraphics[width=1\linewidth]{lim20}
+$$
+
+\begin{solution}
+	It is not possible to simply use the theorem Arithmetic of Limits since the limit of $\sin(\frac{\pi}{x})$ as $x\to 0$ does not exist.  Since $-1\leq \sin (\theta)\leq 1$ for all real numbers $\theta$, we have 
+	$$-1\leq \sin(\frac{\pi}{x})\leq 1 \quad \quad \text{for all~}x\neq 0$$
+	Multiplying the above by $x^2$ we see that 
+	$$-x^2\leq x^2\sin(\frac{\pi}{x})\leq x^2 \quad \quad \text{for all~}x\neq 0.$$
+	Since  $$\lim_{x\to 0}x^2=\lim_{x\to 0}(-x^2)=0$$ by the {\bf sandwich (or squeeze or pinch) theorem} (look at below for the sandwich theorem) we have 
+	$$\lim_{x\to 0} x^2\sin(\frac{\pi}{x})=0.$$
+\end{solution}
+
+\begin{theorem}({\bf sandwich (or squeeze or pinch) theorem} )
+	Let $a\in \mathbb{R}$ and let $f,g,h$ be three functions so that 
+	$$f(x) \leq g(x) \leq h(x)$$
+	for all $x$ in an interval around $a$, except possibly at $x=a$. Then if 
+	$$\lim_{x\to a}f(x)=\lim_{x\to a}h(x)=L$$
+	then it is also the case that 
+	$$\lim_{x\to a}g(x)=L.$$
+\end{theorem}
+
+\begin{Example}
+	Let $f(x)$ be a function such that $1\leq f(x)\leq x^2-2x+2$. What is 
+	$$\lim_{x\to 1}f(x)?$$
+\end{Example}
+
+\begin{solution}
+	Consider that 
+	$$\lim_{x\to 1}x=1\quad \quad \quad \text{and}\quad \quad \quad \lim_{x\to 1}x^2-2x+2=1.$$
+	Therefore, by the sandwich/pinch/squeeze theorem 
+	$$\lim_{x\to 1}f(x)=1.$$
+\end{solution}
+
+\section{Limits at Infinity} 
+\begin{Example}
+	We want to compute 
+	$$\lim_{x\to +\infty} \frac{1}{x} \quad \quad \text{and}\quad \quad \lim_{x\to -\infty} \frac{1}{x}$$ By plug in some large numbers into $\frac{1}{x}$ we have
+$$	\begin{array}{c|c|c|c|c|c|c}
+		-10000&-1000 & -100 ||\circ || 100 & 1000& 10000\\
+		\hline
+		-0.0001& 0.001 & -0.01  ||\circ || 0.01 & 0.001& 0.0001
+	\end{array}
+	$$
+	We see that as $x$ is getting bigger and  positive the function $\frac{1}{x}$ is getting closer to  $0$. Thus, 
+	$$\lim_{x\to +\infty} \frac{1}{x}=0.$$ Moreover,
+	$$\lim_{x\to -\infty} \frac{1}{x}=0.$$
+\end{Example}
+
+\begin{definition}({\bf Informal limit at infinity.})
+	We write 
+	$$\lim_{x\to \infty} f(x)=L$$ when the value of the function $f(x)$ gets closer and closer to $L$ as we make $x$ larger and larger and positive.\\
+	Similarly, we write 
+	$$\lim_{x\to -\infty}f(x)=L$$ when the value of the function $f(x)$ gets closer and closer to $L$ as we make $x$ larger and larger and negative.
+\end{definition}
+
+\begin{Example}
+	Consider the graph of the function $f(x)$. 
+		$$
+	\includegraphics[width=.6\linewidth]{lim22}
+	$$
+	Then 
+	$$\lim_{x\to \infty} f(x)=-2\quad \quad \text{and}\quad \quad \lim_{x\to -\infty} f(x)=2$$ 
+\end{Example}
+
+\begin{Example}
+	Consider the graph of the function $g(x)$. 
+	$$
+	\includegraphics[width=.6\linewidth]{lim23}
+	$$
+	Then 
+	$$\lim_{x\to \infty} g(x)=-2\quad \quad \text{and}\quad \quad \lim_{x\to -\infty} g(x)=+\infty$$ 
+\end{Example}
+Same as usual we start with two very simple building blocks and build other limits from them.
+\begin{theorem}
+	Let $c\in \mathbb{R}$ then the following limits hold
+	$$\lim_{x\to +\infty} c=c\quad \quad \quad \lim_{x\to -\infty} c=c$$
+		$$\lim_{x\to +\infty} \frac{1}{x}=0\quad \quad \quad \lim_{x\to -\infty} \frac{1}{x}=0.$$
+\end{theorem}
+\begin{tcolorbox}[width=\textwidth,colback={blue!10},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{theorem}
+	Let $f(x)$ and $g(x)$ be two functions for which the limits 
+	$$ \lim_{x\to \infty}f(x)=F\quad \quad \quad \lim_{x\to \infty}=G$$
+	exist. Then the following limits hold
+	$$
+	\lim_{x\to \infty} (f(x)+g(x))=F\pm G
+	$$
+	$$
+	\lim_{x\to \infty}f(x)g(x)=FG
+	$$
+	$$
+	\lim_{x\to \infty}\frac{f(x)}{g(x)}=\frac{F}{G} \quad \text{provided}~G\neq 0
+	$$
+	and for rational numbers $r$,
+		$$\lim_{x\to \infty}(f(x))^r=F^r$$ provided that $f(x)^r$ is defined for all $x$.\\
+		The analogous results hold for limits to $-\infty$.
+\end{theorem}
+\end{tcolorbox}
+We need a little extra care  with the posers of functions.\\
+\noindent {\bf Warning:} Consider that 
+$$\lim_{x\to +\infty}\frac{1}{x^{1/2}}=0$$ However, 
+$$\lim_{x\to +\infty}\frac{1}{(-x)^{1/2}}$$  does not exist because $x^{1/2}$ is not defined for $x<0$.
+
+\begin{Example}
+	Compute the following limit:
+	$$\lim_{x\to \infty} \frac{x^2-3x+4}{3x^2+8x+1}$$
+\end{Example}
+\begin{solution}
+	By factoring $x$ with largest exponent in the numerator and denominator we have
+	$$\lim_{x\to \infty} \frac{x^2-3x+4}{3x^2+8x+1}=\lim_{x\to \infty} \frac{x^2( 1+\frac{-3x}{x^2}+\frac{4}{x^2} )}{x^2( 3+\frac{8x}{3x^2}+\frac{1}{3x^2} )}=\lim_{x\to \infty} \frac{( 1+\frac{-3x}{x^2}+\frac{4}{x^2} )}{( 3+\frac{8x}{3x^2}+\frac{1}{3x^2} )}=
+	$$
+	$$\frac{(\lim_{x\to \infty} 1+\lim_{x\to \infty}\frac{-3x}{x^2}+\lim_{x\to \infty}\frac{4}{x^2}) }{( \lim_{x\to \infty}3+\lim_{x\to \infty}\frac{8x}{3x^2}+\lim_{x\to \infty}\frac{1}{3x^2} )}=\frac{1}{3}.$$
+\end{solution}
+\begin{remark}
+	Note that 
+	$$\sqrt{x^2}=|x|=\begin{cases}
+	x & x\geq 0\\
+	-x & x<0.
+	\end{cases}$$
+	$$
+	\includegraphics[width=1\linewidth]{lim25}
+	$$
+\end{remark}
+\begin{Example}
+	Compute the following limit:
+	$$\lim_{x\to \infty} \frac{\sqrt{4x^2+1}}{5x-1}.$$
+		$$
+	\includegraphics[width=1\linewidth]{lim26}
+	$$
+\end{Example}
+
+\begin{solution}
+	Factor the terms with the largest exponents in the numerator and denominator. We have
+	$$\lim_{x\to \infty} \frac{\sqrt{4x^2+1}}{5x-1}=\lim_{x\to \infty} \frac{\sqrt{4x^2(1+\frac{1}{4x^2})}}{5x(1-\frac{1}{5x})}=\lim_{x\to \infty} \frac{\sqrt{4x^2}\sqrt{(1+\frac{1}{4x^2})}}{5x(1-\frac{1}{5x})}=\lim_{x\to \infty} \frac{2|x|}{5x}=\lim_{x\to \infty} \frac{2x}{5x}=\frac{2}{5}.$$
+\end{solution}
+
+
+
+\begin{Example}
+	Compute the following limit:
+	$$\lim_{x\to -\infty} \frac{\sqrt{4x^2+1}}{5x-1}.$$
+\end{Example}
+
+\begin{solution}
+	By the same kind of computation we have
+		$$\lim_{x\to -\infty} \frac{\sqrt{4x^2+1}}{5x-1}=\lim_{x\to \infty} \frac{2|x|}{5x}.$$
+	Consider that since $x$ is getting negative values, we have $|x|=-x$. Therefore,	
+		$$\lim_{x\to -\infty} \frac{\sqrt{4x^2+1}}{5x-1}=\lim_{x\to \infty} \frac{2|x|}{5x}=\lim_{x\to \infty} \frac{-2x}{5x}=\frac{-2}{5}.$$
+\end{solution}
+
+\begin{Example}
+	Compute the following limit:
+	$$\lim_{x\to \infty} \left( x^{7/5}-x\right).$$
+\end{Example}
+
+\begin{solution}
+	We factor the term with the largest exponent, we have
+		$$\lim_{x\to \infty} \left( x^{7/5}-x\right)=\lim_{x\to \infty} x^{7/5}\left( 1-\frac{1}{x^{2/5}}\right)=\infty.$$
+\end{solution}
+
+\begin{theorem}
+	Let $a,c,H\in \mathbb{R}$ and let $f,g,h$ be functions defined in an interval around $a$ (but they need not be defined at $x=a$), so that 
+	$$ \lim_{x\to a}f(x)=+\infty \quad \quad \lim_{x\to a}g(x)=+\infty \quad \quad \lim_{x\to a}h(x)=H$$
+	\begin{enumerate}
+		\item $$\lim_{x\to a}(f(x)+g(x))=+\infty.$$
+			\item $$\lim_{x\to a}(f(x)+h(x))=+\infty.$$
+				\item $$\lim_{x\to a}(f(x)-g(x))=\text{undetermined}.$$
+					\item $$\lim_{x\to a}(f(x)-h(x))=+\infty.$$
+					\item $$\lim_{x\to a}cf(x)=\begin{cases}
+					+\infty & c>0\\
+					0 & c=0\\
+					-\infty & c<0
+					\end{cases}$$
+					\item $$\lim(f(x).g(x))=+\infty.$$
+					\item $$\lim_{x\to a} (f(x).h(x))
+					=\begin{cases}
+					+\infty & H>0\\
+					\text{undetermined} & H=0\\
+					-\infty & H<0
+					\end{cases}$$
+					\item $$\lim_{x\to a} \frac{h(x)}{f(x)}=0.$$
+	\end{enumerate}
+\end{theorem}
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{Example}
+	Consider the following three functions:
+	$$f(x)=x^{-2}\quad \quad g(x)=2x^{-2}\quad \quad h(x)=x^{-2}-1.$$
+	Then 
+	$$\lim_{x\to 0}f(x)=+\infty \quad \quad \lim_{x\to 0}g(x)=+\infty \quad \quad \lim_{x\to 0}h(x)=+\infty.$$
+	Then 
+   \begin{itemize}
+   	\item $$ \lim_{x\to 0} (f(x)-g(x))=\lim_{x\to 0}x^{-2}=-\infty$$
+   	\item $$ \lim_{x\to 0} (f(x)-h(x))=\lim_{x\to 0}(1)=1$$
+   	\item $$ \lim_{x\to 0} (g(x)-h(x))=\lim_{x\to 0}x^{-2}+1=\infty$$
+   \end{itemize}
+\end{Example}
+\end{tcolorbox}
+
+\newpage
+
+\section{Continuity}
+
+Look at all the following functions.
+$$
+	\includegraphics[width=.3\linewidth]{x21}~	\includegraphics[width=.3\linewidth]{x3-2x+1}$$ $$	\includegraphics[width=.3\linewidth]{sinx}~\includegraphics[width=.3\linewidth]{cosx}~
+$$
+All of these functions are continuous. Roughly speaking, a function is continuous if it does not have any abrupt jumps. Now consider the following function.
+	$$\includegraphics[width=.3\linewidth]{cont1}~~\includegraphics[width=.3\linewidth]{cont2} ~~~~\includegraphics[width=.3\linewidth]{cont3}$$
+These functions are not continuous. The function $f$, $g$, and $h$ have abrupt jumps at $x=2$, $x=0$, and $x=1$, respectively, so $f$ is not continuous at $a$, $g$ is not continuous at $0$, and $h$ is not continuous at $1$.
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{definition}
+	A function $f(x)$ is continuous at $a$ if 
+	$$\lim_{x\to a}f(x)=f(a).$$
+If a function is not continuous at $a$ then it is said to be discontinuous at $a$. 
+When we write that $f$ is continuous without specifying a point, then typically
+this means that $f$ is continuous at $a$ for all $a\in \mathbb{R}$..
+When we write that $f(x)$ is continuous on the open interval $(a, b)$ then the function
+is continuous at every point $c$ satisfying $a< c<b$.
+\end{definition}
+\end{tcolorbox}
+From the above definition we immediately have that if $f$ is continuous at $a$, then 
+\begin{enumerate}
+	\item $f(a)$ exists;
+	\item $\lim_{x\to a^-}$ exists and is equal to $f(a)$.
+		\item $\lim_{x\to a^+}$ exists and is equal to $f(a)$.
+\end{enumerate}
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{definition}
+	A function is continuous from the left at $a$ if 
+	$$\lim_{x\to a^-}=f(a).$$ And 
+		a function is continuous from the right at $a$ if 
+		$$\lim_{x\to a^-}=f(a).$$
+\end{definition}
+\end{tcolorbox}
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{definition}
+	A function $f(x)$ is continuous on an interval $[a,b]$  if 
+	\begin{enumerate}
+		\item $f(x)$ continuous on $(a,b)$,
+		\item $f(x)$ is continuous form the right at $a$,
+		\item $f(x)$ is continuous form the left at $b$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	A function $f(x)$ is continuous on an interval $(a,b]$  ({\color{red}{on the interval $[a,b)$}})  if 
+	\begin{enumerate}
+		\item $f(x)$ continuous on $(a,b)$,
+		\item $f(x)$ is continuous form the left at $b$ ({\color{red}{from the right at $a$}}).
+	\end{enumerate}
+\end{definition}
+\end{tcolorbox}
+
+%\begin{definition}
+%	A function $f(x)$ is continuous on an interval $[a,b)$   if 
+%	\begin{enumerate}
+%		\item $f(x)$ continuous on $(a,b)$,
+%		\item $f(x)$ is continuous form the right at $a$.
+%	\end{enumerate}
+%\end{definition}
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{Example}
+	Consider the function 
+	$$f(x)=\begin{cases}
+	x & x<1\\
+	x+2 & x\geq 1
+	\end{cases}$$
+	\begin{mdframed}
+		$$\text{jump discontinuity}\quad \quad 
+	\includegraphics[width=.2\linewidth]{cont1}
+	$$
+\end{mdframed}
+	\begin{itemize}
+		\item $$\lim_{x\to 1^{-}}f(x)=1~~~~~~\lim_{x\to 1^{+}}f(x)=3~~~~~~f(1)=3.$$
+		\item The function $f(x)$, at $x=1$ is not continuous because the limit does not exist; however, it is continuous form the right at $1$ since 
+		$$\lim_{x\to 1^{+}}f(x)=3=f(1).$$
+		\item The function $f(x)$, on $[1,\infty)$ (for $x\geq 1$) is continuous.
+		\item The function $f(x)$, on $(-\infty,-1)$ is continuous.
+	\end{itemize}
+\end{Example}
+		\end{tcolorbox}
+
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{Example}
+				Consider the function 
+	$$g(x)=\begin{cases}
+	\frac{1}{x^2} & x\neq 0\\
+	0 & x=0
+	\end{cases}$$
+\begin{mdframed}
+	$$\text{infinite discontinuity}\quad \quad 
+	\includegraphics[width=.4\linewidth]{cont2}
+	$$
+\end{mdframed}
+\begin{itemize}
+	\item Consider that 
+	$$ \lim_{x\to 0^{-}}g(x)=\infty=\lim_{x\to 0^{+}}g(x)~~~~~~~g(0)=0.$$
+Thus 	the function $g(x)$ is not continuous at $0$ 
+because  $$\lim_{x\to 0}g(x)=\infty\neq 0=g(0).$$
+It is not continuous at $0$ from the left since $\lim_{x\to 0^{-}}g(x)=\infty\neq 0=g(0)$ and not from  the right since $\lim_{x\to 0^{+}}g(x)=\infty\neq 0=g(0)$.
+	\item the function $g(x)$ is continuous at all points in $\mathbb{R}$ except $0$. 
+\end{itemize}
+
+\end{Example}
+\end{tcolorbox}
+
+	\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{Example}
+	Consider the function 
+	$$h(x)=\begin{cases}
+	\frac{x^3-x^2}{x-1} & x\neq 1\\
+	0 & x=1
+	\end{cases}$$
+	\begin{mdframed}
+		$$\text{removable discontinuity}\quad \quad 
+		\includegraphics[width=.4\linewidth]{cont3}
+		$$
+	\end{mdframed}
+	\begin{itemize}
+		\item $$\lim_{x\to 1^{-}}h(x)=1=\lim_{x\to 1^{+}}h(x)~~~~~~~~~~~~f(1)=0.$$
+		\item $$\lim_{x\to 1}=1.$$
+		\item the function $h(x)$ is not continuous at $1$ since $$\lim_{x\to 1}h(x)=1\neq 0=h(1).$$ It is not continuous form the left since $$\lim_{x\to 1^{-}}h(x)=1\neq 0=h(1)$$ and not from the right since $$\lim_{x\to 1^{+}}h(x)=1\neq 0=h(1).$$
+		\item the function $h(x)$ is continuous at all points in $\mathbb{R}$ except $1$. 
+	\end{itemize}
+\end{Example}
+\end{tcolorbox}
+%
+%\begin{definition}
+%	A function $f(x)$ is continuous from the right at $a$ if$$\lim_{x\to a^+}f(x)=f(a).$$
+%	Similarly, a function $f(x)$ is continuous from the left at $a$ if 
+%	$$\lim_{x\to a^-}=f(a).$$ A function is continuous at $a$ if it is continuous form the left and right at $a$, that is,
+%	$$\lim_{x\to a^+}f(x)=f(a)=\lim_{x\to a^+}f(x).$$
+%\end{definition}
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{lemma}
+	Let $c\in \mathbb{R}$. The functions 
+	$$f(x)=x~~~~~~~~~~~~~g(x)=c$$
+	are continuous everywhere on the real line.
+\end{lemma}
+\end{tcolorbox}
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{theorem} ({\bf Arithmetic of continuity})
+	Let $a,c\in \mathbb{R}$ and let $f(x)$ and $g(x)$ be functions that are continuous at $a$. Then the following functions are also continuous at $x=a$.
+	\begin{itemize}
+		\item $f(x)+g(x)$ and $f(x)-g(x)$,
+		\item $cf(x)$ and $f(x)g(x)$, and 
+		\item $\frac{f(x)}{g(x)}$ provided $g(a)\neq 0$. 
+	\end{itemize}
+\end{theorem}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+	\begin{theorem} The following functions are continuous everywhere in their domains
+		\begin{itemize}
+			\item polynomials and rational functions (for example $f(x)=x^5+4x^2+1$ and $g(x)=\frac{x^2+1}{x+1}$)
+			\item roots and powers (for example $h(x)=\sqrt{x}$ and $r(x)=2^x$)
+						\item trig functions and their inverses (for example $k(x)=\sin(x)$ and $t(x)=\cos^{-1}(x)$)
+			\item exponentials and logarithms (for example $s(x)=e^x$ and $q(x)=\ln x$). 
+		\end{itemize}
+	\end{theorem}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue] 
+\begin{Example} Determine when the function $f(x)=\frac{\sin(x)}{x^2-5x+6}$ is continuous?
+	Since both $\sin(x)$ and $x^2-5x+6$ are continuous by the above theorem we only need to check when $x^2-5x+6=0$. Note that $x^2-5x+6=(x-2)(x-3)$, thus this polynomial is only zero at $x=2$ and $x=3$. Therefore, $f(x)$ is continuous at all points in $\mathbb{R}$ except $2$ and $3$.
+\end{Example}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{theorem}
+	If $g$ is continuous at $a$ and $f(x)$ is continuous at $g(a)$, then $(f\circ g)(x)=f(g(x))$ is continuous at $x=a$. 
+\end{theorem}
+\end{tcolorbox}
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{Example}
+	Determine when the function $h(x)=\sqrt{\sin(x)}$ is continuous. 
+\end{Example}
+
+\begin{solution}
+	Let $f(x)=\sqrt{x}$ and $g(x)=\sin(x)$, then $h(x)=(f\circ g)(x)$. We only need to find out at what points $\sin(x)$ is positive.
+	$$\includegraphics[width=1\linewidth]{sinexpanded}$$
+	The function $\sqrt{\sin(x)}$ is continuous if 
+	$$x\in [2n\pi,(2n+1)\pi]\quad \quad \text{for all natural numbers $n$}.$$
+\end{solution}
+\end{tcolorbox}
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{theorem}{\bf (Intermediate value theorem(IVT))} 
+	Let $a<b$ and let $f(x)$ be a function that is continuous at all points $a\leq x\leq b$. If ${Y}$ is any number between $f(a)$ and $f(b)$ then there exists some number $c\in [a,b]$ so that $f(c)={Y}$.
+\end{theorem}
+
+$$
+\includegraphics[width=.7\linewidth]{IVT}
+$$
+\end{tcolorbox}
+\begin{remark}
+One of the main application of the IVT theorem is showing a function $f$ has a zero inside an interval. For example, in the following picture
+$$
+\includegraphics[width=.7\linewidth]{IVT0}
+$$
+we can see that $f(a)<0$ and $f(b)>0$, therefore by IVT, there is a number $c$ between $a$ and $b$ such that $f(c)=0$.
+
+\end{remark}
+\begin{remark}
+If $f$ is continuous and $f(a) \leq Y \leq f(b)$, the IVT merely shows that there is a $a \leq c \leq b$ such that $f(c)=Y$, but it doesn't show how many of them exist. For example, in the following picture, we can see $f(a) \leq Y \leq f(b)$, and there are three numbers $c_1,c_2$, and $c_3$ such that $f(c_1)=f(c_2)=f(c_3)=Y$.
+$$
+\includegraphics[width=.7\linewidth]{IVT4}
+$$
+\end{remark}
+
+\begin{remark}
+	Consider that if the function $f$ is not continuous at the interval $[a,b]$ then the IVT fails. In the following examples, even though $f(a)\leq Y\leq f(b)$, there is not a number $a \leq c\leq b$ such that $f(c)=Y$. 
+	$$
+	\includegraphics[width=1\linewidth]{IVT5}
+	$$
+\end{remark}
+ 
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{Example}
+	Show that the function $f(x)=x-1+sin(\pi x /2)$ has a zero in $0\leq x \leq 1$.
+\end{Example}
+
+\begin{solution}
+	Consider that $f(x)$ is a continuous function such  that $f(0)=-1$ and $f(1)=1$. Therefore, by IVT, since $f(0)=-1\leq 0 \leq 1 = f(1)$, we have $f(c)=0$ for some $c\in [0,1]$.
+\end{solution}
+\end{tcolorbox}
+
+\begin{Example}
+	Use the bisection method to find a zero of 
+	$f(x)=x-1+\sin(\pi x/2)$ that lies between $0$ and $1$.
+\end{Example}
+
+\begin{solution}
+	\begin{itemize}
+		\item 
+	Let $a=0$ and $b=1$. Then 
+	$$f(0)=-1$$
+	$$f(1)=1$$
+	\item Test the point in the middle $x=\frac{1-0}{2}=0.5$, 
+	$$f(0.5)=0.2071067813>0$$
+	\item Let $a=0$ and $b=0.5$. Then 
+	$$ f(0)=-1 $$
+	$$ f(1)= 0.2071067813$$
+	So by IVT, there is a zero in $[0,0.5]$.
+	\item Test the point in the middle $x=\frac{0.5-0}{2}=0.25.$
+	$$ f(0.25)=-0.3673165675 <0.$$
+	\item Let $a = 0.25$, $b = 0.5$ where $f (0.25)<0$ and $f (0.5)>0$. By IVT there is a zero in the interval $[0.25,0.5]$.
+	\item So without much work we know the location of a zero inside a range of length $1/4$. Each iteration will halve the length of the range and we keep going until we reach the precision we need, though it is much easier to program a computer to do it.
+\end{itemize}
+\end{solution}
+%
+%\begin{solution}
+%	For learning about bisection method and how to solve this problem refer to Example 1.6.15 of the CLP book. 
+%\end{solution}
+
+\chapter{Derivatives}
+
+\section{Revisiting Tangent Lines}
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{Example}
+	Find the slope of the tangent line to the curve $y=x^2$ that passes through $P=(1,1)$.
+\end{Example}
+$$
+\includegraphics[width=1\linewidth]{yx2}
+$$
+
+\begin{solution}
+	Consider that the slope of the secant line is 
+	$$ \frac{f(1+h)-f(1)}{(1+h)-1}=\frac{f(1+h)-f(1)}{h}.$$
+	And the slope of the tangent line is the same as 
+	$$\lim_{h\to 0}\frac{f(1+h)-f(1)}{h}.$$
+\end{solution}
+\end{tcolorbox}
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{theorem}
+Given a function $f(x)$ the slope of the tangent line at $x=a$ (if exists) is 
+$$\lim_{x\to a} \frac{f(a+h)-f(a)}{h}.$$
+\end{theorem}
+\end{tcolorbox}
+
+%$$
+%\begin{tikzpicture}
+%\begin{axis}[
+%    axis lines = left,
+%    xlabel = $x$,
+%    ylabel = {$f(x)$},
+%]
+%\addplot [
+%    domain=0:2, 
+%    samples=5, 
+%    color=red, thick
+%]
+%{x^2 };
+%\addlegendentry{$x^2 $}
+%
+%\addplot [
+%    domain=0:2, 
+%    samples=4, 
+%    color=blue, thick
+%]
+%{x+1};
+%
+%\end{axis}
+%\end{tikzpicture}
+%$$
+
+\section{Definition of the derivative}
+
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{definition}(Derivative at a point)
+Let $a\in\mathbb{R}$ and let $f(x)$ be a function defined on an open interval that contains $a$.
+\begin{itemize}
+\item The derivative of $f(x)$ at $x=a$ is denoted $f'(a)$ and is defined by 
+\begin{equation}\label{derivative} f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h} \end{equation} if the limit exists. 
+\item  When the above limit exists, the function $f(x)$ is said to be differentiable at $x=a$. When the limit 
+does not exist, the function $f(x)$ is said to be not differentiable at $x=a$. 
+\item We can equivalently define the derivative $f'(a)$  by the limit 
+$$f'(a)=\lim_{x\to a} \frac{f(x)-f(a)}{x-a}.$$ 
+\end{itemize}
+To see that these two definitions are the same, we set $x=a+h (x-a=h)$ and then when $h$ approaches $0$, we have 
+$x$ approaches $a$, and the limit in \ref{derivative} becomes 
+$\lim_{x\to a} \frac{f(x)-f(a)}{x-a}.$
+\end{definition}
+\end{tcolorbox}
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{Example}
+Let $a,c\in \mathbb{R}$ be constants. Compute the derivative of the function $f(x)=c$ at $x=a$. 
+\end{Example}
+
+\begin{solution}
+By the definition of the derivative, we have
+\begin{equation*}
+\begin{split}
+f'(a)=&\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}\\
+&= \lim_{h\to 0}\frac{c-c}{h}\\
+&= \lim_{h\to 0}0\\
+&=0
+\end{split}
+\end{equation*}
+\end{solution}
+\end{tcolorbox}
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{Example}
+Let $a\in \mathbb{R}$. Compute the limit of the function $g(x)=x$ at $x=a$.
+\end{Example}
+
+\begin{solution}
+By the definition of the derivative we have 
+\begin{equation*}
+\begin{split}
+f'(a)=&\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}\\
+& =\lim_{h\to 0}\frac{(a+h)-a}{h}\\
+& =\lim_{h\to 0}\frac{h}{h}\\
+&=\lim_{h\to 0} 1\\
+&=1. 
+\end{split}
+\end{equation*}
+\end{solution}
+\end{tcolorbox}
+
+We have so proved our first theorem which is the following.
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{theorem}(easiest derivative)
+Let $a,c\in \mathbb{R}$ and let $f(x)=c$ and $g(x)=x$. Then 
+$$f'(a)=0$$
+and 
+$$g'(a)=1.$$
+\end{theorem}
+\end{tcolorbox}
+\begin{tcolorbox}[width=\textwidth,colback={green!20},title={},colbacktitle=yellow,coltitle=blue]
+\begin{Example}
+Compute the derivative of $f(t)=t^2$ at $t=a$.
+\end{Example}
+
+\begin{solution}
+We have that 
+\begin{equation*}
+\begin{split}
+f'(a)&=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}\\
+&=\lim_{h\to 0}\frac{(a+h)^2-a^2}{h}\\
+&=\lim_{h\to 0}\frac{a^2+h^2+2ah-a^2}{h}\\
+&=\lim_{h\to 0}\frac{h^2+2ah}{h}\\
+&=\lim_{h\to 0}\frac{h(h+2a)}{h}\\
+&=\lim_{h\to 0}h+2a\\
+&=2a
+\end{split}
+\end{equation*}	
+\end{solution}
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\begin{tcolorbox}[width=\textwidth,colback={red!30},title={},colbacktitle=yellow,coltitle=blue] 
+\noindent {\bf Homework:}
+\end{tcolorbox}
+
+Go to this link\\ \href{https://www.mooculus.osu.edu/textbook/mooculus.pdf}{https://www.mooculus.osu.edu/textbook/mooculus.pdf} and download the book "MOOCULUS". Then do the following questions:
+\begin{itemize}
+	\item all questions in page 35;
+	\item in page 33 see why $\lim_{x\to 0}\frac{sin(x)}{x}=1$. Then do Questions 1-8 page 38;
+	\item in page 42, do questions 1-10.
+\end{itemize}
+
+
+
+\begin{thebibliography}{9}
+	\bibitem{CLP}  CLP1: Differential Calculus by J. Feldman, A. Rechnitzer, and E. Yeager.
+	
+\end{thebibliography}
+
+
+
+
+
+%\newpage
+%
+%\begin{theorem}[Franco]
+%	Let ${\rm BP}(M)$ be the matroid basis polytope for the polytope $M$. Then two distinct vertices $e_A$ and $e_B$ form an edge of ${\rm BP}(M)$ if and only if 
+%	 $C,B\in M$ with $e_A+e_B=e_C+e_D$ implies that $\{A,B\}=\{C,D\}$.
+%\end{theorem}
+%
+%\begin{theorem}
+%	Let $M$ be a matroid. Two distinct vertices $e_A$ and $e_B$ form an edge of
+%	the matroid independence polytope
+%of $M$ if and only if 
+%	$C,B\in M$ with $e_A+e_B=e_C+e_D$ implies that $\{A,B\}=\{C,D\}$.
+%\end{theorem}
+%
+%\begin{proof}
+%	It is clear that if $e_A$ and $e_B$ are form an edge, then  $C,B\in M$ with $e_A+e_B=e_C+e_D$ implies that $\{A,B\}=\{C,D\}$.
+%	
+%	Now we want to show that if 
+%	$C,B\in M$ with $e_A+e_B=e_C+e_D$ implies that $\{A,B\}=\{C,D\}$, then $e_A$ and $e_B$ form an edge. We proceed the proof by contradiction. Suppose that if 
+%	$C,B\in M$ with $e_A+e_B=e_C+e_D$ implies that $\{A,B\}=\{C,D\}$ and $\{e_A,e_B\}$ is not an edge. Therefore, there are $C_1,\ldots,C_k$ distinct from $A$ and $B$ such that 
+%	\begin{equation}\label{adjacent-condition}
+%	e_A-e_B=\sum_{i=1}^k \gamma_i(e_{C_i}-e_B).
+%	\end{equation}
+%	We establish the proof by analyzing the cardinalities of $A$ and $B$. 
+%	
+%	If $|A|>|B|+1$, then there exists $a\in A\setminus B$ such that $B\cup \{a\}$ is in $M$; moreover, $A\setminus \{a\}$ is in $M$. So by letting $C=B\cup \{a\}$ and $D=A\setminus \{a\}$, we have $$e_A+e_B=e_C+e_D, $$ a contradiction.
+%	
+%	Therefore, we have two cases $|A|=|B|+1$ or $|A|=|B|$. 
+%	
+%	{\bf Case 1:} $|A|=|B|+1.$ Suppose that $|A\setminus B|>1$. Then there exists $a\in A\setminus B$ such that $B\cup \{a\}$ is in $M$; moreover, $A\setminus \{a\}$ is in $M$. Let $C=B\cup \{a\}$ and $D=A\setminus \{a\}$. We have $$e_A+e_B=e_C+e_D, $$ a contradiction. Therefore, we may assume that $|A\setminus B|=1$, and consequently, $B\subseteq A$. By investigating  (\ref{adjacent-condition}), we conclude that each $C_i$ is equal to $A$ or $B$, a contradiction. 
+%	
+%	{\bf Case 2:}  $|A|=|B|=r$. Consider (\ref{adjacent-condition}). Note that each $C_i$ is a subset of $A\cup B$.  Assume that there exists $C_i$ such that $|C_i|>r$. Then there exists $x\in C_i\setminus A$ such that $A\cup \{x\}\in M$. Since $C_i\subseteq A\cup B$, it follows that $x\in B$. Let $C=A\cup \{x\}$ and $D=B\setminus \{x\}$. Then
+%	$$e_A+e_B=e_C+e_D, $$ a contradiction.  Consequently, all $C_i$'s have the same  cardinality $r$.  Remark that all elements of rank $r$ of $M$ produces a matroid basis polytope, say $P$. Therefore, all $C_i's$ are vertices of $P$.  In the matroid basis polytope $P$, simultaneously 
+%	\begin{itemize}
+%		\item  if $e_C$ and $e_D$ are vertices of $P$ and $e_A+e_B=e_C+e_D$ implies that $\{A,B\}=\{C,D\}$; and
+%		\item there are $C_1,\ldots,C_k$ distinct from $A$ and $B$ such that  $e_A-e_B=\sum_{i=1}^k \gamma_i(e_{C_i}-e_B),$
+%	\end{itemize}
+%which is a contradiction because the former, by the previous theorem , means $\{e_A,e_B\}$ forms an edge in the matroid basis polytope $P$, and the latter means there is not edge between $e_A$ and $e_B$ in $P$.
+%\end{proof}
+
+
+\end{document}
